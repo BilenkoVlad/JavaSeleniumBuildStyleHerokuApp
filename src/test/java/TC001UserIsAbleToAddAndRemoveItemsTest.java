@@ -11,12 +11,16 @@ public class TC001UserIsAbleToAddAndRemoveItemsTest extends BaseTestClass {
                 .clickOnLink("Add/Remove Elements");
 
         addRemoveElementsPage
+                .assertions()
+                .thePageURLContains("add_remove_elements");
+
+        addRemoveElementsPage
                 .addRemoveElementsPageFunctions()
                 .clickAddButton();
 
         addRemoveElementsPage
                 .assertions()
-                .theElementIsDisplayed(addRemoveElementsPage.addButtonXPATH());
+                .theElementIsDisplayed(addRemoveElementsPage.ADD_BUTTON_ELEMENT());
 
         addRemoveElementsPage
                 .addRemoveElementsPageFunctions()
@@ -24,7 +28,7 @@ public class TC001UserIsAbleToAddAndRemoveItemsTest extends BaseTestClass {
 
         addRemoveElementsPage
                 .assertions()
-                .theElementIsNotDisplayed(addRemoveElementsPage.deleteButtonXPATH());
+                .theElementIsNotDisplayed(addRemoveElementsPage.DELETE_BUTTON_XPATH());
 
         addRemoveElementsPage
                 .addRemoveElementsPageFunctions()
@@ -32,8 +36,8 @@ public class TC001UserIsAbleToAddAndRemoveItemsTest extends BaseTestClass {
 
         addRemoveElementsPage
                 .assertions()
-                .theElementsAreDisplayed(addRemoveElementsPage.deleteButtonXPATH())
-                .theListSizeEquals(addRemoveElementsPage.deleteButtonXPATH(), 10);
+                .theElementsAreDisplayed(addRemoveElementsPage.DELETE_BUTTON_ELEMENTS())
+                .theListSizeEquals(addRemoveElementsPage.DELETE_BUTTON_ELEMENTS(), 10);
 
         addRemoveElementsPage
                 .addRemoveElementsPageFunctions()
@@ -41,7 +45,7 @@ public class TC001UserIsAbleToAddAndRemoveItemsTest extends BaseTestClass {
 
         addRemoveElementsPage
                 .assertions()
-                .theListSizeEquals(addRemoveElementsPage.deleteButtonXPATH(), 0);
+                .theListSizeEquals(addRemoveElementsPage.DELETE_BUTTON_ELEMENTS(), 0);
     }
 
     @Test

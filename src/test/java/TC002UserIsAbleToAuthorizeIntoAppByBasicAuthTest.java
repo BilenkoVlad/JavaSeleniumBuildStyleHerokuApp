@@ -13,13 +13,21 @@ public class TC002UserIsAbleToAuthorizeIntoAppByBasicAuthTest extends BaseTestCl
                 .clickOnLink("Basic Auth");
 
         basicAuthPage
+                .assertions()
+                .thePageURLContains("basic_auth");
+
+        basicAuthPage
                 .basicAuthPageFunctions()
                 .loginToPage("admin", "admin");
 
         authorizedPage
                 .assertions()
-                .theElementTextEquals(authorizedPage.pageNameXPATH(), "Basic Auth")
-                .theElementTextEquals(authorizedPage.pageBodyXPATH(), "Congratulations! You must have the proper credentials.");
+                .thePageURLContains("https://admin:admin@the-internet.herokuapp.com/basic_auth");
+
+        authorizedPage
+                .assertions()
+                .theElementTextEquals(authorizedPage.PAGE_NAME_ELEMENT(), "Basic Auth")
+                .theElementTextEquals(authorizedPage.PAGE_BODY_ELEMENT(), "Congratulations! You must have the proper credentials.");
     }
 
     @Test

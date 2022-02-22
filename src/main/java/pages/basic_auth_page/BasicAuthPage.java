@@ -11,18 +11,18 @@ public class BasicAuthPage extends BasicAuthPageFunctions {
         this.assertions = assertions;
     }
 
+    public static BasicAuthPage getBasicAuthPage() {
+        return new BasicAuthPage(
+                new BasicAuthPageFunctions(),
+                new Assertions()
+        );
+    }
+
     public BasicAuthPageFunctions basicAuthPageFunctions() {
         return basicAuthPageFunctions;
     }
 
     public Assertions assertions() {
         return assertions;
-    }
-
-    public static BasicAuthPage getBasicAuthPage() {
-        return new BasicAuthPage(
-                new BasicAuthPageFunctions(),
-                new Assertions()
-        );
     }
 }

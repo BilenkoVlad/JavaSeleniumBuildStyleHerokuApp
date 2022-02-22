@@ -3,10 +3,6 @@ package pages.home_page;
 public class HomePage {
     private final HomePageFunctions homePageFunctions;
 
-    public HomePageFunctions homePageFunctions() {
-        return homePageFunctions;
-    }
-
     private HomePage(HomePageFunctions homePageFunctions) {
         this.homePageFunctions = homePageFunctions;
     }
@@ -15,5 +11,9 @@ public class HomePage {
         return new HomePage(
                 new HomePageFunctions()
         );
+    }
+
+    public HomePageFunctions homePageFunctions() {
+        return homePageFunctions;
     }
 }

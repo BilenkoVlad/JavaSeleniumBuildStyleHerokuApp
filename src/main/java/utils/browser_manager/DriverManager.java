@@ -11,7 +11,6 @@ import utils.settings.Settings;
 
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -26,35 +25,45 @@ public class DriverManager {
         return webDriver;
     }
 
-    private void getWebDriver() {
-        if (Settings.getTAFSettings().getBrowser().equals("chrome")) {
-            ChromeOptions options = setupChromeOptions();
-            WebDriverManager.chromedriver().setup();
-            webDriver = new ChromeDriver(options);
-            webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            webDriver.manage().window().maximize();
-        }
-        if (Settings.getTAFSettings().getBrowser().equals("firefox")) {
-            WebDriverManager.firefoxdriver().setup();
-            webDriver = new FirefoxDriver();
-        }
-    }
-
-    public static WebElement findElementByXPATH(String xpath){
+    public static WebElement findElementByXPATH(String xpath) {
         return initDriver().findElement(By.xpath(xpath));
     }
 
-    public static List<WebElement> findElementsByXPATH(String xpath){
+    public static List<WebElement> findElementsByXPATH(String xpath) {
         return initDriver().findElements(By.xpath(xpath));
     }
 
     public static void resetDriver() {
-        initDriver().close();
+        initDriver().quit();
         webDriver = null;
     }
 
     public static void refreshPage() {
         initDriver().navigate().refresh();
+    }
+
+    public static String getCurrentURL() {
+        return initDriver().getCurrentUrl();
+    }
+
+    public static void switchToFrame(WebElement webElement) {
+        initDriver().switchTo().frame(webElement);
+    }
+
+    public static void switchToDefaultContent() {
+        initDriver().switchTo().defaultContent();
+    }
+
+    public static void switchToAlert() {
+        initDriver().switchTo().alert();
+    }
+
+    public static void acceptAlert() {
+        initDriver().switchTo().alert().accept();
+    }
+
+    public static String getAlertText() {
+        return initDriver().switchTo().alert().getText().trim();
     }
 
     private static ChromeOptions setupChromeOptions() {
@@ -71,5 +80,19 @@ public class DriverManager {
         chromeOptions.addArguments("--test-type");
         chromeOptions.addArguments("--disable-extensions");
         return chromeOptions;
+    }
+
+    private void getWebDriver() {
+        if (Settings.getTAFSettings().getBrowser().equals("chrome")) {
+            ChromeOptions options = setupChromeOptions();
+            WebDriverManager.chromedriver().setup();
+            webDriver = new ChromeDriver(options);
+            webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            webDriver.manage().window().maximize();
+        }
+        if (Settings.getTAFSettings().getBrowser().equals("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            webDriver = new FirefoxDriver();
+        }
     }
 }

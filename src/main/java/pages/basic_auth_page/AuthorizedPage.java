@@ -1,26 +1,12 @@
 package pages.basic_auth_page;
 
+import org.openqa.selenium.WebElement;
 import pages.Assertions;
+import utils.browser_manager.DriverManager;
 
 public class AuthorizedPage extends AuthorizedPageFunctions {
     private final AuthorizedPageFunctions addRemoveElementsPageFunctions;
     private final Assertions assertions;
-
-    public String pageNameXPATH() {
-        return PAGE_NAME_TEXT;
-    }
-
-    public String pageBodyXPATH() {
-        return PAGE_BODY_TEXT;
-    }
-
-    public AuthorizedPageFunctions authorizedPageFunctions() {
-        return addRemoveElementsPageFunctions;
-    }
-
-    public Assertions assertions() {
-        return assertions;
-    }
 
     private AuthorizedPage(AuthorizedPageFunctions addRemoveElementsPageFunctions, Assertions assertions) {
         this.addRemoveElementsPageFunctions = addRemoveElementsPageFunctions;
@@ -32,5 +18,21 @@ public class AuthorizedPage extends AuthorizedPageFunctions {
                 new AuthorizedPageFunctions(),
                 new Assertions()
         );
+    }
+
+    public WebElement PAGE_NAME_ELEMENT() {
+        return DriverManager.findElementByXPATH(PAGE_NAME_TEXT);
+    }
+
+    public WebElement PAGE_BODY_ELEMENT() {
+        return DriverManager.findElementByXPATH(PAGE_BODY_TEXT);
+    }
+
+    public AuthorizedPageFunctions authorizedPageFunctions() {
+        return addRemoveElementsPageFunctions;
+    }
+
+    public Assertions assertions() {
+        return assertions;
     }
 }
