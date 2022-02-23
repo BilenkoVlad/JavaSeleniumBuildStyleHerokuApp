@@ -1,6 +1,8 @@
 package pages.inputs_page;
 
+import org.openqa.selenium.WebElement;
 import pages.Assertions;
+import utils.browser_manager.DriverManager;
 
 public class InputsPage extends InputsPageFunctions {
 
@@ -19,16 +21,16 @@ public class InputsPage extends InputsPageFunctions {
         );
     }
 
-    public String headersPageXPATH() {
-        return HEADERS_PAGE;
+    public WebElement HEADERS_PAGE_ELEMENT() {
+        return DriverManager.findElementByXPATH(HEADERS_PAGE);
     }
 
-    public String inputFieldXPATH() {
-        return INPUT_FIELD;
+    public WebElement INPUT_FIELD_ELEMENT() {
+        return DriverManager.findElementByXPATH(INPUT_FIELD);
     }
 
-    public String bodyTextXPATH() {
-        return BODY_TEXT;
+    public WebElement BODY_TEXT_ELEMENT() {
+        return DriverManager.findElementByXPATH(BODY_TEXT);
     }
 
     public InputsPageFunctions inputsPageFunctions() {

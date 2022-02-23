@@ -1,6 +1,8 @@
 package pages.dynamic_loading_page.example1_hidden_elements_page;
 
+import org.openqa.selenium.WebElement;
 import pages.Assertions;
+import utils.browser_manager.DriverManager;
 
 public class Example1HiddenElementsPage extends Example1HiddenElementsPageFunctions {
     private final Example1HiddenElementsPageFunctions example1HiddenElementsPageFunctions;
@@ -18,23 +20,27 @@ public class Example1HiddenElementsPage extends Example1HiddenElementsPageFuncti
         );
     }
 
-    public String headersPageXPATH() {
-        return HEADERS_PAGE;
+    public WebElement HEADERS_PAGE_ELEMENT() {
+        return DriverManager.findElementByXPATH(HEADERS_PAGE);
     }
 
-    public String startButtonXPATH() {
-        return START_BUTTON;
+    public WebElement START_BUTTON_ELEMENT() {
+        return DriverManager.findElementByXPATH(START_BUTTON);
     }
 
-    public String bodyTextXPATH() {
-        return BODY_TEXT;
+    public WebElement BODY_TEXT_ELEMENT() {
+        return DriverManager.findElementByXPATH(BODY_TEXT);
     }
 
-    public String loaderXPATH() {
-        return LOADER;
+    public WebElement LOADER_ELEMENT() {
+        return DriverManager.findElementByXPATH(LOADER);
     }
 
-    public String hiddenTextXPATH() {
+    public WebElement HIDDEN_TEXT_ELEMENT() {
+        return DriverManager.findElementByXPATH(HIDDEN_TEXT);
+    }
+
+    public String HIDDEN_TEXT_XPATH() {
         return HIDDEN_TEXT;
     }
 

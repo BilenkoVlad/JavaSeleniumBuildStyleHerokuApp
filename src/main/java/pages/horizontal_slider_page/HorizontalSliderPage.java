@@ -1,6 +1,8 @@
 package pages.horizontal_slider_page;
 
+import org.openqa.selenium.WebElement;
 import pages.Assertions;
+import utils.browser_manager.DriverManager;
 
 public class HorizontalSliderPage extends HorizontalSliderPageFunctions {
 
@@ -19,21 +21,20 @@ public class HorizontalSliderPage extends HorizontalSliderPageFunctions {
         );
     }
 
-    public String headerPageXPATH() {
-        return HEADER_TEXT;
+    public WebElement HEADER_TEXT_ELEMENT() {
+        return DriverManager.findElementByXPATH(HEADER_TEXT);
     }
 
-    public String sliderXPATH() {
-        return SLIDER;
+    public WebElement SLIDER_ELEMENT() {
+        return DriverManager.findElementByXPATH(SLIDER);
     }
 
-    public String rangeNumberXPATH() {
-        return RANGE_NUMBER;
+    public WebElement RANGE_NUMBER_ELEMENT() {
+        return DriverManager.findElementByXPATH(RANGE_NUMBER);
     }
 
-
-    public String bodyTextXPATH() {
-        return BODY_TEXT;
+    public WebElement BODY_TEXT_ELEMENT() {
+        return DriverManager.findElementByXPATH(BODY_TEXT);
     }
 
     public HorizontalSliderPageFunctions horizontalSliderPageFunctions() {

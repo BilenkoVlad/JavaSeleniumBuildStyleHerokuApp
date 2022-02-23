@@ -2,7 +2,7 @@ package pages.checkboxes_page;
 
 import utils.browser_manager.DriverManager;
 
-public class CheckboxesPageFunctions{
+public class CheckboxesPageFunctions {
     protected final String HEADER_PAGE = ".//div[@class='example']/h3";
     protected final String CHECKBOX = ".//input[@type='checkbox']";
 

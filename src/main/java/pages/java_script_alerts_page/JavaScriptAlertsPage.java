@@ -1,6 +1,10 @@
 package pages.java_script_alerts_page;
 
+import org.openqa.selenium.WebElement;
 import pages.Assertions;
+import utils.browser_manager.DriverManager;
+
+import java.util.List;
 
 public class JavaScriptAlertsPage extends JavaScriptAlertsPageFunctions {
     private final JavaScriptAlertsPageFunctions javaScriptAlertsPageFunctions;
@@ -18,36 +22,36 @@ public class JavaScriptAlertsPage extends JavaScriptAlertsPageFunctions {
         );
     }
 
-    public String headersPageXPATH() {
-        return HEADERS_PAGE;
+    public WebElement HEADERS_PAGE_ELEMENT() {
+        return DriverManager.findElementByXPATH(HEADERS_PAGE);
     }
 
-    public String resultTextXPATH() {
-        return RESULT_TEXT;
+    public WebElement RESULT_TEXT_ELEMENT() {
+        return DriverManager.findElementByXPATH(RESULT_TEXT);
     }
 
-    public String bodyTextXPATH() {
-        return BODY_TEXT;
+    public WebElement BODY_TEXT_ELEMENT() {
+        return DriverManager.findElementByXPATH(BODY_TEXT);
     }
 
-    public String resultMessageXPATH() {
-        return RESULT_MESSAGE;
+    public WebElement RESULT_MESSAGE_ELEMENT() {
+        return DriverManager.findElementByXPATH(RESULT_MESSAGE);
     }
 
-    public String jsButtonsXPATH() {
-        return JS_BUTTONS;
+    public List<WebElement> JS_BUTTONS_ELEMENTS() {
+        return DriverManager.findElementsByXPATH(JS_BUTTONS);
     }
 
-    public String jsAlertXPATH() {
-        return JS_ALERT;
+    public WebElement JS_ALERT_ELEMENT() {
+        return DriverManager.findElementByXPATH(JS_ALERT);
     }
 
-    public String jsConfirmXPATH() {
-        return JS_CONFIRM;
+    public WebElement JS_CONFIRM_ELEMENT() {
+        return DriverManager.findElementByXPATH(JS_CONFIRM);
     }
 
-    public String jsPromptXPATH() {
-        return JS_PROMPT;
+    public WebElement JS_PROMPT_ELEMENT() {
+        return DriverManager.findElementByXPATH(JS_PROMPT);
     }
 
     public JavaScriptAlertsPageFunctions javaScriptAlertsPageFunctions() {

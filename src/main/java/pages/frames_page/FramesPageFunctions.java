@@ -6,12 +6,12 @@ public class FramesPageFunctions {
     protected final String HEADERS_PAGE = ".//div[@class='example']/h3";
     protected final String LINKS = ".//div[@class='example']/ul/li/a";
 
-    public FramesPageFunctions clickOnNestedFramesLink(){
+    public FramesPageFunctions clickOnNestedFramesLink() {
         DriverManager.findElementsByXPATH(LINKS).get(0).click();
         return this;
     }
 
-    public FramesPageFunctions clickOnIFrameLink(){
+    public FramesPageFunctions clickOnIFrameLink() {
         DriverManager.findElementsByXPATH(LINKS).get(1).click();
         return this;
     }

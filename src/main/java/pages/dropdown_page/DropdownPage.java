@@ -29,7 +29,7 @@ public class DropdownPage extends DropdownPageFunctions {
         return DriverManager.findElementByXPATH(DROPDOWN);
     }
 
-    public Select DROPDOWN_SELECT(){
+    public Select DROPDOWN_SELECT() {
         return new Select(DROPDOWN_ELEMENT());
     }
 

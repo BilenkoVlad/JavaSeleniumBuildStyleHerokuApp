@@ -42,6 +42,10 @@ public class DriverManager {
         initDriver().navigate().refresh();
     }
 
+    public static void navigateBackInPage() {
+        initDriver().navigate().back();
+    }
+
     public static String getCurrentURL() {
         return initDriver().getCurrentUrl();
     }
@@ -60,6 +64,14 @@ public class DriverManager {
 
     public static void acceptAlert() {
         initDriver().switchTo().alert().accept();
+    }
+
+    public static void dismissAlert() {
+        initDriver().switchTo().alert().dismiss();
+    }
+
+    public static void sendKeysToAlert(String text) {
+        initDriver().switchTo().alert().sendKeys(text);
     }
 
     public static String getAlertText() {

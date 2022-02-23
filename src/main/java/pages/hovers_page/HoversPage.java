@@ -1,6 +1,10 @@
 package pages.hovers_page;
 
+import org.openqa.selenium.WebElement;
 import pages.Assertions;
+import utils.browser_manager.DriverManager;
+
+import java.util.List;
 
 public class HoversPage extends HoversPageFunctions {
     private final HoversPageFunctions hoversPageFunctions;
@@ -18,24 +22,24 @@ public class HoversPage extends HoversPageFunctions {
         );
     }
 
-    public String headersPageXPATH() {
-        return HEADERS_PAGE;
+    public WebElement HEADERS_PAGE_ELEMENT() {
+        return DriverManager.findElementByXPATH(HEADERS_PAGE);
     }
 
-    public String avatarsXPATH() {
-        return AVATARS;
+    public List<WebElement> AVATARS_ELEMENTS() {
+        return DriverManager.findElementsByXPATH(AVATARS);
     }
 
-    public String avatarsNamesXPATH() {
-        return AVATARS_NAMES;
+    public List<WebElement> AVATARS_NAMES_ELEMENTS() {
+        return DriverManager.findElementsByXPATH(AVATARS_NAMES);
     }
 
-    public String avatarsLinksXPATH() {
-        return AVATARS_LINKS;
+    public List<WebElement> AVATARS_LINKS_ELEMENTS() {
+        return DriverManager.findElementsByXPATH(AVATARS_LINKS);
     }
 
-    public String bodyTextXPATH() {
-        return BODY_TEXT;
+    public WebElement BODY_TEXT_ELEMENT() {
+        return DriverManager.findElementByXPATH(BODY_TEXT);
     }
 
     public HoversPageFunctions hoversPageFunctions() {

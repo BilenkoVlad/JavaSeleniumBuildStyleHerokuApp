@@ -1,82 +1,135 @@
-//import org.testng.annotations.Test;
-//import pages.HomePage;
-//import utils.Waiters;
-//import utils.browsers.BrowserManager;
-//
-//import java.util.Arrays;
-//import java.util.List;
-//
-//import static org.testng.Assert.assertTrue;
-//
-//public class TC0020UserIsAbleToWorkWithAlertsTest extends BaseClass {
-//    @Test
-//    public void UserIsAbleToWorkWithAlertsTest() {
-//        HomePage homePage = HomePage.getSiteInstance();
-//        homePage.linkToPages("JavaScript Alerts").click();
-//
-//        List<String> jsNames = Arrays.asList("Click for JS Alert", "Click for JS Confirm", "Click for JS Prompt");
-//
-//        assertEquals(homePage.javaScriptAlertsPage().headersPage().getText(), "JavaScript Alerts");
-//        assertEquals(homePage.javaScriptAlertsPage().bodyText().getText(), "Here are some examples of different JavaScript alerts which " +
-//                "can be troublesome for automation");
-//        for (int i = 0; i < homePage.javaScriptAlertsPage().jsButtonsList().size(); i++) {
-//            assertTrue(homePage.javaScriptAlertsPage().jsButtonsList().get(i).isDisplayed());
-//            assertTrue(homePage.javaScriptAlertsPage().jsButtonsList().get(i).isEnabled());
-//            assertEquals(homePage.javaScriptAlertsPage().jsButtonsList().get(i).getText(), jsNames.get(i));
-//        }
-//        assertEquals(homePage.javaScriptAlertsPage().resultText().getText(), "Result:");
-//        assertEquals(homePage.javaScriptAlertsPage().resultMessage().getText(), "");
-//
-//        homePage.javaScriptAlertsPage().jsAlert().click();
-//
-//        Waiters.waitUntilCondition(BrowserManager::alertIsPresent, 5, "Alert presented");
-//        assertEquals(BrowserManager.alertText(), "I am a JS Alert");
-//
-//        BrowserManager.acceptAlert();
-//        assertEquals(homePage.javaScriptAlertsPage().resultMessage().getText(), "You successfully clicked an alert");
-//
-//        homePage.javaScriptAlertsPage().jsConfirm().click();
-//
-//        Waiters.waitUntilCondition(BrowserManager::alertIsPresent, 5, "Alert presented");
-//        assertEquals(BrowserManager.alertText(), "I am a JS Confirm");
-//        BrowserManager.acceptAlert();
-//        assertEquals(homePage.javaScriptAlertsPage().resultMessage().getText(), "You clicked: Ok");
-//
-//        homePage.javaScriptAlertsPage().jsConfirm().click();
-//
-//        Waiters.waitUntilCondition(BrowserManager::alertIsPresent, 5, "Alert presented");
-//        assertEquals(BrowserManager.alertText(), "I am a JS Confirm");
-//        BrowserManager.dismissAlert();
-//        assertEquals(homePage.javaScriptAlertsPage().resultMessage().getText(), "You clicked: Cancel");
-//
-//        homePage.javaScriptAlertsPage().jsPrompt().click();
-//
-//        Waiters.waitUntilCondition(BrowserManager::alertIsPresent, 5, "Alert presented");
-//        assertEquals(BrowserManager.alertText(), "I am a JS prompt");
-//        BrowserManager.sendKeysToAlert("Test text with !@#$%^&*()");
-//        BrowserManager.acceptAlert();
-//        assertEquals(homePage.javaScriptAlertsPage().resultMessage().getText(), "You entered: Test text with !@#$%^&*()");
-//
-//        homePage.javaScriptAlertsPage().jsPrompt().click();
-//
-//        Waiters.waitUntilCondition(BrowserManager::alertIsPresent, 5, "Alert presented");
-//        assertEquals(BrowserManager.alertText(), "I am a JS prompt");
-//        BrowserManager.sendKeysToAlert("Test text with !@#$%^&*()");
-//        BrowserManager.dismissAlert();
-//        assertEquals(homePage.javaScriptAlertsPage().resultMessage().getText(), "You entered: null");
-//
-//        homePage.javaScriptAlertsPage().jsPrompt().click();
-//
-//        Waiters.waitUntilCondition(BrowserManager::alertIsPresent, 5, "Alert presented");
-//        assertEquals(BrowserManager.alertText(), "I am a JS prompt");
-//        BrowserManager.acceptAlert();
-//        assertEquals(homePage.javaScriptAlertsPage().resultMessage().getText(), "You entered:");
-//
-//        homePage.javaScriptAlertsPage().jsPrompt().click();
-//
-//        Waiters.waitUntilCondition(BrowserManager::alertIsPresent, 5, "Alert presented");
-//        assertEquals(BrowserManager.alertText(), "I am a JS prompt");
-//        BrowserManager.dismissAlert();
-//        assertEquals(homePage.javaScriptAlertsPage().resultMessage().getText(), "You entered: null");
-//    }
-//}
+import org.testng.annotations.Test;
+import pages.java_script_alerts_page.JavaScriptAlertsPage;
+import utils.browser_manager.DriverManager;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class TC0020UserIsAbleToWorkWithAlertsTest extends BaseTestClass {
+    JavaScriptAlertsPage javaScriptAlertsPage = JavaScriptAlertsPage.getJavaScriptAlertsPage();
+
+    @Test
+    public void UserIsAbleToWorkWithAlertsTest() {
+        homePage.homePageFunctions()
+                .clickOnLink("JavaScript Alerts");
+        List<String> jsNames = Arrays.asList("Click for JS Alert", "Click for JS Confirm", "Click for JS Prompt");
+
+        javaScriptAlertsPage
+                .assertions()
+                .thePageURLContains("javascript_alerts")
+                .theElementTextEquals(javaScriptAlertsPage.HEADERS_PAGE_ELEMENT(), "JavaScript Alerts")
+                .theElementTextEquals(javaScriptAlertsPage.BODY_TEXT_ELEMENT(), "Here are some examples of different JavaScript alerts which " +
+                        "can be troublesome for automation")
+                .theElementsAreDisplayed(javaScriptAlertsPage.JS_BUTTONS_ELEMENTS())
+                .theElementsInListEqual(javaScriptAlertsPage.JS_BUTTONS_ELEMENTS(), jsNames)
+                .theElementTextEquals(javaScriptAlertsPage.RESULT_TEXT_ELEMENT(), "Result:")
+                .theElementTextEquals(javaScriptAlertsPage.RESULT_MESSAGE_ELEMENT(), "");
+
+        javaScriptAlertsPage
+                .javaScriptAlertsPageFunctions()
+                .clickOnJSAlert();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theAlertIsPresented()
+                .theAlertTextEquals("I am a JS Alert");
+
+        DriverManager.acceptAlert();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theElementTextEquals(javaScriptAlertsPage.RESULT_MESSAGE_ELEMENT(), "You successfully clicked an alert");
+
+        javaScriptAlertsPage
+                .javaScriptAlertsPageFunctions()
+                .clickOnJSConfirm();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theAlertIsPresented()
+                .theAlertTextEquals("I am a JS Confirm");
+
+        DriverManager.acceptAlert();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theElementTextEquals(javaScriptAlertsPage.RESULT_MESSAGE_ELEMENT(), "You clicked: Ok");
+
+        javaScriptAlertsPage
+                .javaScriptAlertsPageFunctions()
+                .clickOnJSConfirm();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theAlertIsPresented()
+                .theAlertTextEquals("I am a JS Confirm");
+
+        DriverManager.dismissAlert();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theElementTextEquals(javaScriptAlertsPage.RESULT_MESSAGE_ELEMENT(), "You clicked: Cancel");
+
+        javaScriptAlertsPage
+                .javaScriptAlertsPageFunctions()
+                .clickOnJSPrompt();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theAlertIsPresented()
+                .theAlertTextEquals("I am a JS prompt");
+
+        DriverManager.sendKeysToAlert("Test text with !@#$%^&*()");
+        DriverManager.acceptAlert();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theElementTextEquals(javaScriptAlertsPage.RESULT_MESSAGE_ELEMENT(), "You entered: Test text with !@#$%^&*()");
+
+        javaScriptAlertsPage
+                .javaScriptAlertsPageFunctions()
+                .clickOnJSPrompt();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theAlertIsPresented()
+                .theAlertTextEquals("I am a JS prompt");
+
+        DriverManager.sendKeysToAlert("Test text with !@#$%^&*()");
+        DriverManager.dismissAlert();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theElementTextEquals(javaScriptAlertsPage.RESULT_MESSAGE_ELEMENT(), "You entered: null");
+
+        javaScriptAlertsPage
+                .javaScriptAlertsPageFunctions()
+                .clickOnJSPrompt();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theAlertIsPresented()
+                .theAlertTextEquals("I am a JS prompt");
+
+        DriverManager.acceptAlert();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theElementTextEquals(javaScriptAlertsPage.RESULT_MESSAGE_ELEMENT(), "You entered:");
+
+        javaScriptAlertsPage
+                .javaScriptAlertsPageFunctions()
+                .clickOnJSPrompt();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theAlertIsPresented()
+                .theAlertTextEquals("I am a JS prompt");
+
+        DriverManager.dismissAlert();
+
+        javaScriptAlertsPage
+                .assertions()
+                .theElementTextEquals(javaScriptAlertsPage.RESULT_MESSAGE_ELEMENT(), "You entered: null");
+    }
+}

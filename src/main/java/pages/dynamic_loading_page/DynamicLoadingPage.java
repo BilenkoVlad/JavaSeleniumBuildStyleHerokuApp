@@ -1,6 +1,10 @@
 package pages.dynamic_loading_page;
 
+import org.openqa.selenium.WebElement;
 import pages.Assertions;
+import utils.browser_manager.DriverManager;
+
+import java.util.List;
 
 public class DynamicLoadingPage extends DynamicLoadingPageFunctions {
     private final DynamicLoadingPageFunctions dynamicLoadingPageFunctions;
@@ -18,16 +22,16 @@ public class DynamicLoadingPage extends DynamicLoadingPageFunctions {
         );
     }
 
-    public String headersPageXPATH() {
-        return HEADERS_PAGE;
+    public WebElement HEADERS_PAGE_ELEMENT() {
+        return DriverManager.findElementByXPATH(HEADERS_PAGE);
     }
 
-    public String bodyLinksXPATH() {
-        return BODY_LINKS;
+    public List<WebElement> BODY_LINKS_ELEMENTS() {
+        return DriverManager.findElementsByXPATH(BODY_LINKS);
     }
 
-    public String bodyTextXPATH() {
-        return BODY_TEXT;
+    public List<WebElement> BODY_TEXT_ELEMENTS() {
+        return DriverManager.findElementsByXPATH(BODY_TEXT);
     }
 
     public DynamicLoadingPageFunctions dynamicLoadingPageFunctions() {

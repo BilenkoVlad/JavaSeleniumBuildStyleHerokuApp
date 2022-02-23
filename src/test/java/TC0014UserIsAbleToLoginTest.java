@@ -48,7 +48,7 @@ public class TC0014UserIsAbleToLoginTest extends BaseTestClass {
         securePage
                 .assertions()
                 .theElementIsDisplayed(securePage.ALERT_ELEMENT())
-                .theElementTextEquals(securePage.ALERT_ELEMENT(),"You logged into a secure area!\n×")
+                .theElementTextEquals(securePage.ALERT_ELEMENT(), "You logged into a secure area!\n×")
                 .theElementTextEquals(securePage.HEADERS_PAGE_ELEMENT(), "Secure Area")
                 .theElementTextEquals(securePage.BODY_TEXT_ELEMENT(), "Welcome to the Secure Area. When you are done click logout below.")
                 .theElementTextEquals(securePage.LOGOUT_BUTTON_LABEL_ELEMENT(), "Logout")
@@ -62,7 +62,7 @@ public class TC0014UserIsAbleToLoginTest extends BaseTestClass {
         securePage
                 .assertions()
                 .theElementIsDisplayed(securePage.ALERT_ELEMENT())
-                .theElementTextEquals(securePage.ALERT_ELEMENT(),"You logged out of the secure area!\n×");
+                .theElementTextEquals(securePage.ALERT_ELEMENT(), "You logged out of the secure area!\n×");
     }
 
     @Test
